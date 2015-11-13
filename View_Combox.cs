@@ -30,16 +30,18 @@ namespace com_box
         public void UpdateSensor()
         {
             /*
-            sensor1.Sensor_Front.Value = f;
-            sensor1.Sensor_Front_L1.Value = fl1;
-            sensor1.Sensor_Front_L2.Value = fl2;
-            sensor1.Sensor_Front_R1.Value = fr1;
-            sensor1.Sensor_Front_R2.Value = fr2;
-            sensor1.Sensor_Back.Value = back;
-            sensor1.Sensor_Bot_L1.Value = bl1;
-            sensor1.Sensor_Bot_L2.Value = bl2;
-            sensor1.Sensor_Bot_R1.Value = br1;
-            sensor1.Sensor_Bot_R2.Value = br2;
+            int sensor[] = control.getSensorValues();
+            
+            sensor1.Sensor_Front.Value = sensor[2];
+            sensor1.Sensor_Front_L1.Value =sensor[1];
+            sensor1.Sensor_Front_L2.Value = sensor[0];
+            sensor1.Sensor_Front_R1.Value = sensor[3];
+            sensor1.Sensor_Front_R2.Value = sensor[4];
+            sensor1.Sensor_Back.Value = sensor[5];
+            sensor1.Sensor_Bot_L1.Value = sensor[7];
+            sensor1.Sensor_Bot_L2.Value = sensor[6];
+            sensor1.Sensor_Bot_R1.Value = sensor[8];
+            sensor1.Sensor_Bot_R2.Value = sensor[9];
              */
         }
 
@@ -63,6 +65,7 @@ namespace com_box
         private void tms_sensor_Tick(object sender, EventArgs e)
         {
             UpdateSensor();
+
         }
     }
 }
