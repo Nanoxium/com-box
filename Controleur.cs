@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace com_box
 {
@@ -14,10 +15,13 @@ namespace com_box
     {
         private SerialPort _bluetoothSerialPort = null;
         private Form _view = null;
+        private Robot _robot;
+
 
         public Controleur(Form view)
         {
             _view = view;
+            _robot = new Robot();
         }
 
         public bool ConnectBluetoothPort(string com)
@@ -76,6 +80,16 @@ namespace com_box
             }
 
             return values;
+        }
+
+        public void SetRobotSpeed(int speed)
+        {
+            _robot.Speed = speed;
+        }
+
+        public void SendCommand(string command)
+        {
+            _bluetoothSerialPort.WriteLine(command);
         }
     }
 }

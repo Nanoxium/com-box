@@ -17,18 +17,23 @@ namespace com_box
             arret
         }
 
-        const string VITESSE = "5";
+        public int Speed { get; set; }
         Direction dir = Direction.arret;
+
+        public Robot()
+        {
+            Speed = 5;
+        }
 
         public string SendCommand()
         {
             switch(dir)
             {                    
                 case Direction.arret: return "A,0,0,1";
-                case Direction.haut: return "A,"+VITESSE+","+VITESSE+",10";
-                case Direction.bas: return "A,-" + VITESSE + ",-" + VITESSE + ",10";
-                case Direction.gauche: return "A,0," + VITESSE + ",10";
-                case Direction.droite: return "A," + VITESSE + ",0,10";
+                case Direction.haut: return "A,"+Speed+","+Speed+",10";
+                case Direction.bas: return "A,-" + Speed + ",-" + Speed + ",10";
+                case Direction.gauche: return "A,0," + Speed + ",10";
+                case Direction.droite: return "A," + Speed + ",0,10";
             }
             return "A,0,0,1";
 
