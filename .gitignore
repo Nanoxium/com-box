@@ -1,0 +1,5 @@
+obj/
+obj/*
+.vs
+App.config
+bin/Debug/*
