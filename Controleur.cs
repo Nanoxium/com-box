@@ -25,14 +25,21 @@ namespace com_box
             bool connectionMade = true;
             try
             {
-                _bluetoothSerialPort = new SerialPort(com);
+                _bluetoothSerialPort = new SerialPort(com, 9600);
+                _bluetoothSerialPort.Open();
             }
             catch (IOException e)
             {
+                MessageBox.Show("Erreur de connection");
                 connectionMade = false;
             }
 
             return connectionMade;
+        }
+
+        public void CloseConnection()
+        {
+            _bluetoothSerialPort.Close();
         }
 
         /// <summary>
@@ -47,7 +54,7 @@ namespace com_box
             try
             {
                 //Envoie la commande
-                _bluetoothSerialPort.Write("N");
+                _bluetoothSerialPort.WriteLine("N");
 
                 //Récupère et sépare les valeurs des capteurs
                 string[] answer = _bluetoothSerialPort.ReadLine().Split(',');
@@ -56,9 +63,9 @@ namespace com_box
                 values = new int[answer.Length - 1];
 
                 //Parcourt le tableau de valeur et les converti
-                for (int i = 1; i < answer.Length; i++)
+                for (int i = 0; i < answer.Length-1; i++)
                 {
-                    values[i] = Convert.ToInt32(answer[i]);
+                    values[i] = Convert.ToInt32(answer[i+1]);
                 }
             }
             catch (Exception e)

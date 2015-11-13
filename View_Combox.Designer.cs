@@ -65,6 +65,7 @@
             this.btnChangePort.TabIndex = 1;
             this.btnChangePort.Text = "Change port";
             this.btnChangePort.UseVisualStyleBackColor = true;
+            this.btnChangePort.Click += new System.EventHandler(this.btnChangePort_Click);
             // 
             // btnStop
             // 
@@ -103,6 +104,7 @@
             this.btnUp.TabIndex = 6;
             this.btnUp.Text = "↑";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnLeft
             // 
@@ -113,6 +115,7 @@
             this.btnLeft.TabIndex = 7;
             this.btnLeft.Text = "←";
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnDown
             // 
@@ -123,6 +126,7 @@
             this.btnDown.TabIndex = 8;
             this.btnDown.Text = "↓";
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnRight
             // 
@@ -133,6 +137,7 @@
             this.btnRight.TabIndex = 9;
             this.btnRight.Text = "→";
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnSend
             // 
@@ -186,8 +191,6 @@
             // 
             // tms_sensor
             // 
-            this.tms_sensor.Enabled = true;
-            this.tms_sensor.Interval = 10;
             this.tms_sensor.Tick += new System.EventHandler(this.tms_sensor_Tick);
             // 
             // View_Combox
@@ -204,6 +207,7 @@
             this.Controls.Add(this.cmbCom);
             this.Name = "View_Combox";
             this.Text = "View_Combox";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.View_Combox_FormClosing);
             this.gbxSensor.ResumeLayout(false);
             this.gbxControls.ResumeLayout(false);
             this.gbxControls.PerformLayout();

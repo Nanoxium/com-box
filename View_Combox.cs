@@ -17,20 +17,19 @@ namespace com_box
         public View_Combox()
         {
             InitializeComponent();
-            control = new Controleur();
+            control = new Controleur(this);
             
             foreach (string item in System.IO.Ports.SerialPort.GetPortNames())
             {   
                 cmbCom.Items.Add(item);
             }
-            
         }
 
 
         public void UpdateSensor()
         {
-            /*
-            int sensor[] = control.getSensorValues();
+            
+            int[] sensor = control.GetSensorValues();
             
             sensor1.Sensor_Front.Value = sensor[2];
             sensor1.Sensor_Front_L1.Value =sensor[1];
@@ -42,7 +41,7 @@ namespace com_box
             sensor1.Sensor_Bot_L2.Value = sensor[6];
             sensor1.Sensor_Bot_R1.Value = sensor[8];
             sensor1.Sensor_Bot_R2.Value = sensor[9];
-             */
+             
         }
 
 
@@ -65,6 +64,41 @@ namespace com_box
         private void tms_sensor_Tick(object sender, EventArgs e)
         {
             UpdateSensor();
+
+        }
+
+        private void btnChangePort_Click(object sender, EventArgs e)
+        {
+            bool connected = control.ConnectBluetoothPort(this.cmbCom.SelectedItem.ToString());
+
+            if(connected)
+            {
+                tms_sensor.Enabled = true;
+            }
+        }
+
+        private void View_Combox_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            control.CloseConnection();
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
 
         }
     }
