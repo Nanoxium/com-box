@@ -15,7 +15,8 @@ namespace com_box
     {
         private SerialPort _bluetoothSerialPort = null;
         private Form _view = null;
-        private Robot _robot;
+        public Robot _robot;
+        private bool robotConnected = false;
 
 
         public Controleur(Form view)
@@ -31,6 +32,7 @@ namespace com_box
             {
                 _bluetoothSerialPort = new SerialPort(com, 9600);
                 _bluetoothSerialPort.Open();
+                robotConnected = true;
             }
             catch (IOException e)
             {
@@ -43,7 +45,8 @@ namespace com_box
 
         public void CloseConnection()
         {
-            _bluetoothSerialPort.Close();
+            if(_bluetoothSerialPort != null)
+                _bluetoothSerialPort.Close();
         }
 
         /// <summary>
@@ -58,6 +61,8 @@ namespace com_box
             try
             {
                 //Envoie la commande
+                _bluetoothSerialPort.DiscardInBuffer();
+                _bluetoothSerialPort.DiscardOutBuffer();
                 _bluetoothSerialPort.WriteLine("N");
 
                 //Récupère et sépare les valeurs des capteurs
@@ -87,9 +92,20 @@ namespace com_box
             _robot.Speed = speed;
         }
 
+        public void UpdateDirection()
+        {
+            if (robotConnected)
+                SendCommand(_robot.GetSendCommand());
+        }
+
         public void SendCommand(string command)
         {
             _bluetoothSerialPort.WriteLine(command);
+        }
+
+        public void SetDirection(Robot.Direction dir)
+        {
+            _robot.Dir = dir;
         }
     }
 }

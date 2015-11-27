@@ -104,7 +104,6 @@
             this.btnUp.TabIndex = 6;
             this.btnUp.Text = "↑";
             this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnLeft
             // 
@@ -115,7 +114,6 @@
             this.btnLeft.TabIndex = 7;
             this.btnLeft.Text = "←";
             this.btnLeft.UseVisualStyleBackColor = true;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnDown
             // 
@@ -126,7 +124,6 @@
             this.btnDown.TabIndex = 8;
             this.btnDown.Text = "↓";
             this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnRight
             // 
@@ -137,7 +134,6 @@
             this.btnRight.TabIndex = 9;
             this.btnRight.Text = "→";
             this.btnRight.UseVisualStyleBackColor = true;
-            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnSend
             // 
@@ -154,6 +150,8 @@
             this.tbxCommand.Name = "tbxCommand";
             this.tbxCommand.Size = new System.Drawing.Size(177, 20);
             this.tbxCommand.TabIndex = 11;
+            this.tbxCommand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxCommand_KeyDown);
+            this.tbxCommand.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxCommand_KeyUp);
             // 
             // gbxSensor
             // 
@@ -205,9 +203,13 @@
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnChangePort);
             this.Controls.Add(this.cmbCom);
+            this.KeyPreview = true;
             this.Name = "View_Combox";
             this.Text = "View_Combox";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.View_Combox_FormClosing);
+            this.Load += new System.EventHandler(this.View_Combox_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.View_Combox_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.View_Combox_KeyUp);
             this.gbxSensor.ResumeLayout(false);
             this.gbxControls.ResumeLayout(false);
             this.gbxControls.PerformLayout();

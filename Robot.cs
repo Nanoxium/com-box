@@ -20,23 +20,28 @@ namespace com_box
         public int Speed { get; set; }
         Direction dir = Direction.arret;
 
+        public Direction Dir
+        {
+            get { return dir; }
+            set { dir = value; }
+        }
+
         public Robot()
         {
             Speed = 5;
         }
 
-        public string SendCommand()
+        public string GetSendCommand()
         {
-            switch(dir)
+            switch(Dir)
             {                    
-                case Direction.arret: return "A,0,0,1";
-                case Direction.haut: return "A,"+Speed+","+Speed+",10";
-                case Direction.bas: return "A,-" + Speed + ",-" + Speed + ",10";
-                case Direction.gauche: return "A,0," + Speed + ",10";
-                case Direction.droite: return "A," + Speed + ",0,10";
+                case Direction.arret: return "D,0,0";
+                case Direction.haut: return "D," + Speed + "," + Speed + "";
+                case Direction.bas: return "D," + -Speed + "," + -Speed + "";
+                case Direction.gauche: return "D," + -Speed + "," + Speed + "";
+                case Direction.droite: return "D," + Speed + "," + -Speed;
+                default: return "D,0,0";
             }
-            return "A,0,0,1";
-
         }
     }
 }
