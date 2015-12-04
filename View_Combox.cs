@@ -18,9 +18,9 @@ namespace com_box
         {
             InitializeComponent();
             control = new Controleur(this);
-            
+
             foreach (string item in System.IO.Ports.SerialPort.GetPortNames())
-            {   
+            {
                 cmbCom.Items.Add(item);
                 if (item == "COM7")
                 {
@@ -29,10 +29,9 @@ namespace com_box
             }
         }
 
-
         public void UpdateSensor()
         {
-            
+
             int[] sensor = control.GetSensorValues();
             if (sensor.Length == 10)
             {
@@ -49,23 +48,6 @@ namespace com_box
             }
         }
 
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            int value = 500;
-            sensor1.Sensor_Front.Value = value;
-            sensor1.Sensor_Front_L1.Value = value;
-            sensor1.Sensor_Front_L2.Value = value;
-            sensor1.Sensor_Front_R1.Value = value;
-            sensor1.Sensor_Front_R2.Value = value;
-            sensor1.Sensor_Back.Value = value;
-            sensor1.Sensor_Bot_L1.Value = value;
-            sensor1.Sensor_Bot_L2.Value = value;
-            sensor1.Sensor_Bot_R1.Value = value;
-            sensor1.Sensor_Bot_R2.Value = value;
-        }
-
         private void tms_sensor_Tick(object sender, EventArgs e)
         {
             UpdateSensor();
@@ -75,7 +57,7 @@ namespace com_box
         {
             bool connected = control.ConnectBluetoothPort(this.cmbCom.SelectedItem.ToString());
 
-            if(connected)
+            if (connected)
             {
                 tms_sensor.Enabled = true;
                 cmbCom.Enabled = false;
@@ -131,10 +113,44 @@ namespace com_box
             //this.ActiveControl = tbxCommand;
         }
 
+
+
+
+        #region Mouse Control
+
+        private Point mouseLocation;
+        private int ellipse_size = 10;
+
         private void pnlCommand_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawLine(new Pen(Color.Black), pnlCommand.Width/2, 0, pnlCommand.Width/2, pnlCommand.Height);
-            e.Graphics.DrawLine(new Pen(Color.Black), 0, pnlCommand.Height/2, pnlCommand.Width, pnlCommand.Height/2);
+            e.Graphics.DrawLine(new Pen(Color.Black), pnlCommand.Width / 2, 0, pnlCommand.Width / 2, pnlCommand.Height);
+            e.Graphics.DrawLine(new Pen(Color.Black), 0, pnlCommand.Height / 2, pnlCommand.Width, pnlCommand.Height / 2);
+            e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(mouseLocation.X - ellipse_size / 2, mouseLocation.Y - ellipse_size / 2, ellipse_size, ellipse_size));
+        }
+
+
+        private void pnlCommand_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+        private void pnlCommand_MouseLeave(object sender, EventArgs e)
+        {
+            mouseLocation = new Point(pnlCommand.Width / 2, pnlCommand.Height / 2);
+
+            pnlCommand.Invalidate();
+        }
+        private void pnlCommand_MouseMove(object sender, MouseEventArgs e)
+        {
+            mouseLocation = e.Location;
+
+            pnlCommand.Invalidate();
+        }
+
+        #endregion
+
+        private void tmr_repaint_Tick(object sender, EventArgs e)
+        {
+            pnlCommand.Invalidate();
         }
     }
 }
