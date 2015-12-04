@@ -26,7 +26,6 @@ namespace com_box
                 {
                     cmbCom.Text = item.ToString();
                 }
-
             }
         }
 
@@ -91,7 +90,6 @@ namespace com_box
 
         private void tbxCommand_KeyDown(object sender, KeyEventArgs e)
         {
-            button1.Text = "Bonjour";
             switch (e.KeyCode)
             {
                 case Keys.Up: control.SetDirection(Robot.Direction.haut);
@@ -125,12 +123,18 @@ namespace com_box
 
         private void View_Combox_KeyDown(object sender, KeyEventArgs e)
         {
-            this.ActiveControl = tbxCommand;
+            //this.ActiveControl = tbxCommand;
         }
 
         private void View_Combox_KeyUp(object sender, KeyEventArgs e)
         {
-            this.ActiveControl = tbxCommand;
+            //this.ActiveControl = tbxCommand;
+        }
+
+        private void pnlCommand_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawLine(new Pen(Color.Black), pnlCommand.Width/2, 0, pnlCommand.Width/2, pnlCommand.Height);
+            e.Graphics.DrawLine(new Pen(Color.Black), 0, pnlCommand.Height/2, pnlCommand.Width, pnlCommand.Height/2);
         }
     }
 }

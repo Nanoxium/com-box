@@ -32,19 +32,13 @@
             this.cmbCom = new System.Windows.Forms.ComboBox();
             this.btnChangePort = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnAdvance = new System.Windows.Forms.Button();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.tbxCommand = new System.Windows.Forms.TextBox();
             this.gbxSensor = new System.Windows.Forms.GroupBox();
             this.ehSensor = new System.Windows.Forms.Integration.ElementHost();
             this.sensor1 = new com_box.Sensor();
             this.gbxControls = new System.Windows.Forms.GroupBox();
             this.tms_sensor = new System.Windows.Forms.Timer(this.components);
+            this.pnlCommand = new System.Windows.Forms.Panel();
             this.gbxSensor.SuspendLayout();
             this.gbxControls.SuspendLayout();
             this.SuspendLayout();
@@ -52,16 +46,18 @@
             // cmbCom
             // 
             this.cmbCom.FormattingEnabled = true;
-            this.cmbCom.Location = new System.Drawing.Point(12, 12);
+            this.cmbCom.Location = new System.Drawing.Point(24, 23);
+            this.cmbCom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cmbCom.Name = "cmbCom";
-            this.cmbCom.Size = new System.Drawing.Size(121, 21);
+            this.cmbCom.Size = new System.Drawing.Size(238, 33);
             this.cmbCom.TabIndex = 0;
             // 
             // btnChangePort
             // 
-            this.btnChangePort.Location = new System.Drawing.Point(139, 10);
+            this.btnChangePort.Location = new System.Drawing.Point(278, 19);
+            this.btnChangePort.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnChangePort.Name = "btnChangePort";
-            this.btnChangePort.Size = new System.Drawing.Size(82, 23);
+            this.btnChangePort.Size = new System.Drawing.Size(164, 44);
             this.btnChangePort.TabIndex = 1;
             this.btnChangePort.Text = "Change port";
             this.btnChangePort.UseVisualStyleBackColor = true;
@@ -69,120 +65,54 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(344, 10);
+            this.btnStop.Location = new System.Drawing.Point(688, 19);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(90, 23);
+            this.btnStop.Size = new System.Drawing.Size(180, 44);
             this.btnStop.TabIndex = 2;
             this.btnStop.Text = "Stop all";
             this.btnStop.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(42, 448);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnAdvance
             // 
-            this.btnAdvance.Location = new System.Drawing.Point(595, 10);
+            this.btnAdvance.Location = new System.Drawing.Point(1190, 19);
+            this.btnAdvance.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnAdvance.Name = "btnAdvance";
-            this.btnAdvance.Size = new System.Drawing.Size(105, 23);
+            this.btnAdvance.Size = new System.Drawing.Size(210, 44);
             this.btnAdvance.TabIndex = 5;
             this.btnAdvance.Text = "Advance prop.";
             this.btnAdvance.UseVisualStyleBackColor = true;
             // 
-            // btnUp
-            // 
-            this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnUp.Location = new System.Drawing.Point(138, 19);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(39, 39);
-            this.btnUp.TabIndex = 6;
-            this.btnUp.Text = "↑";
-            this.btnUp.UseVisualStyleBackColor = true;
-            // 
-            // btnLeft
-            // 
-            this.btnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnLeft.Location = new System.Drawing.Point(55, 84);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(39, 39);
-            this.btnLeft.TabIndex = 7;
-            this.btnLeft.Text = "←";
-            this.btnLeft.UseVisualStyleBackColor = true;
-            // 
-            // btnDown
-            // 
-            this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnDown.Location = new System.Drawing.Point(138, 156);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(39, 39);
-            this.btnDown.TabIndex = 8;
-            this.btnDown.Text = "↓";
-            this.btnDown.UseVisualStyleBackColor = true;
-            // 
-            // btnRight
-            // 
-            this.btnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnRight.Location = new System.Drawing.Point(210, 84);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(39, 39);
-            this.btnRight.TabIndex = 9;
-            this.btnRight.Text = "→";
-            this.btnRight.UseVisualStyleBackColor = true;
-            // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(200, 226);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
-            this.btnSend.TabIndex = 10;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            // 
-            // tbxCommand
-            // 
-            this.tbxCommand.Location = new System.Drawing.Point(17, 228);
-            this.tbxCommand.Name = "tbxCommand";
-            this.tbxCommand.Size = new System.Drawing.Size(177, 20);
-            this.tbxCommand.TabIndex = 11;
-            this.tbxCommand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxCommand_KeyDown);
-            this.tbxCommand.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxCommand_KeyUp);
-            // 
             // gbxSensor
             // 
             this.gbxSensor.Controls.Add(this.ehSensor);
-            this.gbxSensor.Location = new System.Drawing.Point(12, 39);
+            this.gbxSensor.Location = new System.Drawing.Point(24, 75);
+            this.gbxSensor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.gbxSensor.Name = "gbxSensor";
-            this.gbxSensor.Size = new System.Drawing.Size(326, 342);
+            this.gbxSensor.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gbxSensor.Size = new System.Drawing.Size(652, 658);
             this.gbxSensor.TabIndex = 12;
             this.gbxSensor.TabStop = false;
             this.gbxSensor.Text = "Sensor";
             // 
             // ehSensor
             // 
-            this.ehSensor.Location = new System.Drawing.Point(6, 19);
+            this.ehSensor.Location = new System.Drawing.Point(12, 37);
+            this.ehSensor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ehSensor.Name = "ehSensor";
-            this.ehSensor.Size = new System.Drawing.Size(313, 316);
+            this.ehSensor.Size = new System.Drawing.Size(626, 608);
             this.ehSensor.TabIndex = 3;
             this.ehSensor.Text = "ehSensor";
             this.ehSensor.Child = this.sensor1;
             // 
             // gbxControls
             // 
-            this.gbxControls.Controls.Add(this.btnUp);
-            this.gbxControls.Controls.Add(this.btnLeft);
-            this.gbxControls.Controls.Add(this.tbxCommand);
-            this.gbxControls.Controls.Add(this.btnDown);
-            this.gbxControls.Controls.Add(this.btnSend);
-            this.gbxControls.Controls.Add(this.btnRight);
-            this.gbxControls.Location = new System.Drawing.Point(344, 39);
+            this.gbxControls.Controls.Add(this.pnlCommand);
+            this.gbxControls.Location = new System.Drawing.Point(688, 75);
+            this.gbxControls.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.gbxControls.Name = "gbxControls";
-            this.gbxControls.Size = new System.Drawing.Size(356, 342);
+            this.gbxControls.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gbxControls.Size = new System.Drawing.Size(712, 658);
             this.gbxControls.TabIndex = 13;
             this.gbxControls.TabStop = false;
             this.gbxControls.Text = "Controls";
@@ -191,19 +121,27 @@
             // 
             this.tms_sensor.Tick += new System.EventHandler(this.tms_sensor_Tick);
             // 
+            // pnlCommand
+            // 
+            this.pnlCommand.Location = new System.Drawing.Point(10, 34);
+            this.pnlCommand.Name = "pnlCommand";
+            this.pnlCommand.Size = new System.Drawing.Size(693, 611);
+            this.pnlCommand.TabIndex = 0;
+            this.pnlCommand.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlCommand_Paint);
+            // 
             // View_Combox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 538);
+            this.ClientSize = new System.Drawing.Size(1426, 755);
             this.Controls.Add(this.gbxControls);
             this.Controls.Add(this.gbxSensor);
             this.Controls.Add(this.btnAdvance);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnChangePort);
             this.Controls.Add(this.cmbCom);
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "View_Combox";
             this.Text = "View_Combox";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.View_Combox_FormClosing);
@@ -212,7 +150,6 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.View_Combox_KeyUp);
             this.gbxSensor.ResumeLayout(false);
             this.gbxControls.ResumeLayout(false);
-            this.gbxControls.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -224,16 +161,10 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Integration.ElementHost ehSensor;
         private Sensor sensor1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnAdvance;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnLeft;
-        private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.TextBox tbxCommand;
         private System.Windows.Forms.GroupBox gbxSensor;
         private System.Windows.Forms.GroupBox gbxControls;
         private System.Windows.Forms.Timer tms_sensor;
+        private System.Windows.Forms.Panel pnlCommand;
     }
 }
