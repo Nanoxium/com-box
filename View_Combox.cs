@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -118,31 +119,38 @@ namespace com_box
 
         #region Mouse Control
 
-        private Point mouseLocation;
+        private Point _mouseLocation;
         private int ellipse_size = 10;
 
+        private int _mouseX;
+        private int _mouseY;
+        
+                
         private void pnlCommand_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawLine(new Pen(Color.Black), pnlCommand.Width / 2, 0, pnlCommand.Width / 2, pnlCommand.Height);
             e.Graphics.DrawLine(new Pen(Color.Black), 0, pnlCommand.Height / 2, pnlCommand.Width, pnlCommand.Height / 2);
-            e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(mouseLocation.X - ellipse_size / 2, mouseLocation.Y - ellipse_size / 2, ellipse_size, ellipse_size));
+            e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(_mouseLocation.X - ellipse_size / 2, _mouseLocation.Y - ellipse_size / 2, ellipse_size, ellipse_size));
         }
+        
 
-
-        private void pnlCommand_MouseEnter(object sender, EventArgs e)
-        {
-
-        }
         private void pnlCommand_MouseLeave(object sender, EventArgs e)
         {
-            mouseLocation = new Point(pnlCommand.Width / 2, pnlCommand.Height / 2);
+            _mouseLocation = new Point(pnlCommand.Width / 2, pnlCommand.Height / 2);
 
             pnlCommand.Invalidate();
         }
+
         private void pnlCommand_MouseMove(object sender, MouseEventArgs e)
         {
-            mouseLocation = e.Location;
+            const int maxvalue = 20;
+            double offsetX = pnlCommand.Width/2;
+            double offsetY = pnlCommand.Height/2; 
+            _mouseLocation = e.Location;
 
+            _mouseX = (int)Math.Round((_mouseLocation.X - offsetX)/offsetX*maxvalue, 0);
+            _mouseY = -(int)Math.Round((_mouseLocation.Y - offsetY) / offsetY * maxvalue, 0);
+            Debug.WriteLine("X: " + _mouseX + ", Y: " + _mouseY);
             pnlCommand.Invalidate();
         }
 
