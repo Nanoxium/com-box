@@ -28,7 +28,7 @@ namespace com_box
 
         public Robot()
         {
-            Speed = 5;
+            Speed = 20;
         }
 
         public string GetSendCommand()
@@ -36,10 +36,15 @@ namespace com_box
             switch(Dir)
             {                    
                 case Direction.arret: return "D,0,0";
+
                 case Direction.haut: return "D," + Speed + "," + Speed + "";
+
                 case Direction.bas: return "D," + -Speed + "," + -Speed + "";
+
                 case Direction.gauche: return "D," + -Speed + "," + Speed + "";
+
                 case Direction.droite: return "D," + Speed + "," + -Speed;
+
                 default: return "D,0,0";
             }
         }

@@ -35,7 +35,7 @@ namespace com_box
         {
             
             int[] sensor = control.GetSensorValues();
-            if (sensor.Length != 0)
+            if (sensor.Length == 10)
             {
                 sensor1.Sensor_Front.Value = sensor[2];
                 sensor1.Sensor_Front_L1.Value = sensor[1];
@@ -91,7 +91,8 @@ namespace com_box
 
         private void tbxCommand_KeyDown(object sender, KeyEventArgs e)
         {
-            switch(e.KeyCode)
+            button1.Text = "Bonjour";
+            switch (e.KeyCode)
             {
                 case Keys.Up: control.SetDirection(Robot.Direction.haut);
                     break;
@@ -100,7 +101,7 @@ namespace com_box
                 case Keys.Left: control.SetDirection(Robot.Direction.gauche);
                     break;
                 case Keys.Right: control.SetDirection(Robot.Direction.droite);
-                    break;                   
+                    break;
 
             }
             control.SendCommand(control._robot.GetSendCommand());

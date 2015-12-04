@@ -62,7 +62,6 @@ namespace com_box
             {
                 //Envoie la commande
                 _bluetoothSerialPort.DiscardInBuffer();
-                _bluetoothSerialPort.DiscardOutBuffer();
                 _bluetoothSerialPort.WriteLine("N");
 
                 //Récupère et sépare les valeurs des capteurs
@@ -90,12 +89,6 @@ namespace com_box
         public void SetRobotSpeed(int speed)
         {
             _robot.Speed = speed;
-        }
-
-        public void UpdateDirection()
-        {
-            if (robotConnected)
-                SendCommand(_robot.GetSendCommand());
         }
 
         public void SendCommand(string command)
