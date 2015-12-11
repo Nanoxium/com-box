@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +29,10 @@ namespace com_box
                     cmbCom.Text = item.ToString();
                 }
             }
+            
+            //active le double buffer sur le panel de commande
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, pnlCommand, new object[] { true }); 
+             
         }
 
         public void UpdateSensor()
@@ -133,7 +138,7 @@ namespace com_box
             
             e.Graphics.DrawLine(this._axes, this.pnlCommand.Width / 2, 0, this.pnlCommand.Width / 2, this.pnlCommand.Height);
             e.Graphics.DrawLine(this._axes, 0, this.pnlCommand.Height / 2, this.pnlCommand.Width, this.pnlCommand.Height / 2);
-            e.Graphics.DrawEllipse(this._circle, this.pnlCommand.Bounds);
+            e.Graphics.DrawEllipse(this._circle, 0, 0, this.pnlCommand.Width-1, this.pnlCommand.Height-1);
             e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(this._mouseLocation.X - ELLIPSE_SIZE / 2, this._mouseLocation.Y - ELLIPSE_SIZE / 2, ELLIPSE_SIZE, ELLIPSE_SIZE));
         }
         
@@ -151,11 +156,14 @@ namespace com_box
             double offsetX = pnlCommand.Width/2;
             double offsetY = pnlCommand.Height/2;
             this._mouseLocation = e.Location;
-
+            
             this._mouseX = (int)Math.Round((this._mouseLocation.X - offsetX)/offsetX*maxvalue, 0);
             this._mouseY = -(int)Math.Round((this._mouseLocation.Y - offsetY) / offsetY * maxvalue, 0);
             Debug.WriteLine("X: " + this._mouseX + ", Y: " + this._mouseY);
             this.pnlCommand.Invalidate();
+
+            //contraule du robot
+            control.SetRobotSpeed(_mouseY);
         }
 
         #endregion

@@ -31,6 +31,9 @@ namespace com_box
             Speed = 20;
         }
 
+
+
+
         public string GetSendCommand()
         {
             switch(Dir)
