@@ -17,6 +17,9 @@ namespace com_box
             arret
         }
 
+        public int rSpeed { get; set; }
+        public int lSpeed { get; set; }
+
         public int Speed { get; set; }
         Direction dir = Direction.arret;
 
@@ -36,6 +39,7 @@ namespace com_box
 
         public string GetSendCommand()
         {
+            /*
             switch(Dir)
             {                    
                 case Direction.arret: return "D,0,0";
@@ -50,6 +54,8 @@ namespace com_box
 
                 default: return "D,0,0";
             }
+             */
+            return "D," + lSpeed + "," + rSpeed + "";;
         }
     }
 }

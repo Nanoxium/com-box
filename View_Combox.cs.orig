@@ -135,11 +135,17 @@ namespace com_box
         private readonly Pen _circle = new Pen(Color.Gray);
         private void pnlCommand_Paint(object sender, PaintEventArgs e)
         {
+<<<<<<< Updated upstream
             
             e.Graphics.DrawLine(this._axes, this.pnlCommand.Width / 2, 0, this.pnlCommand.Width / 2, this.pnlCommand.Height);
             e.Graphics.DrawLine(this._axes, 0, this.pnlCommand.Height / 2, this.pnlCommand.Width, this.pnlCommand.Height / 2);
-            e.Graphics.DrawEllipse(this._circle, 0, 0, this.pnlCommand.Width-1, this.pnlCommand.Height-1);
+            e.Graphics.DrawEllipse(this._circle, this.pnlCommand.Bounds);
             e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(this._mouseLocation.X - ELLIPSE_SIZE / 2, this._mouseLocation.Y - ELLIPSE_SIZE / 2, ELLIPSE_SIZE, ELLIPSE_SIZE));
+=======
+            e.Graphics.DrawLine(new Pen(Color.Black), pnlCommand.Width / 2, 0, pnlCommand.Width / 2, pnlCommand.Height);
+            e.Graphics.DrawLine(new Pen(Color.Black), 0, pnlCommand.Height / 2, pnlCommand.Width, pnlCommand.Height / 2);            
+            e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(_mouseLocation.X - ellipse_size / 2, _mouseLocation.Y - ellipse_size / 2, ellipse_size, ellipse_size));
+>>>>>>> Stashed changes
         }
         
 
@@ -148,26 +154,32 @@ namespace com_box
             this._mouseLocation = new Point(this.pnlCommand.Width / 2, this.pnlCommand.Height / 2);
             Debug.WriteLine("Mouse left");
             this.pnlCommand.Invalidate();
-            control.SetRobotSpeed(0, 0);
-            control.SendCommand(control._robot.GetSendCommand());
         }
 
         private void pnlCommand_MouseMove(object sender, MouseEventArgs e)
         {
             const int maxvalue = 20;
             double offsetX = pnlCommand.Width/2;
+<<<<<<< Updated upstream
             double offsetY = pnlCommand.Height/2;
             this._mouseLocation = e.Location;
-            
+
             this._mouseX = (int)Math.Round((this._mouseLocation.X - offsetX)/offsetX*maxvalue, 0);
             this._mouseY = -(int)Math.Round((this._mouseLocation.Y - offsetY) / offsetY * maxvalue, 0);
             Debug.WriteLine("X: " + this._mouseX + ", Y: " + this._mouseY);
             this.pnlCommand.Invalidate();
+=======
+            double offsetY = pnlCommand.Height/2; 
+            _mouseLocation = e.Location;
+            
+            _mouseX = (int)Math.Round((_mouseLocation.X - offsetX)/offsetX*maxvalue, 0);
+            _mouseY = -(int)Math.Round((_mouseLocation.Y - offsetY) / offsetY * maxvalue, 0);
+            Debug.WriteLine("X: " + _mouseX + ", Y: " + _mouseY);
+            pnlCommand.Invalidate();
 
-            //controle du robot
-            control.SetRobotSpeed(_mouseY, _mouseX);
-
-            control.SendCommand(control._robot.GetSendCommand());
+            //contraule du robot
+            control.SetRobotSpeed(_mouseY);
+>>>>>>> Stashed changes
         }
 
         #endregion

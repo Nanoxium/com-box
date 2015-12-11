@@ -45,7 +45,7 @@ namespace com_box
 
         public void CloseConnection()
         {
-            if(_bluetoothSerialPort != null)
+            if (_bluetoothSerialPort != null)
                 _bluetoothSerialPort.Close();
         }
 
@@ -71,9 +71,9 @@ namespace com_box
                 values = new int[answer.Length - 1];
 
                 //Parcourt le tableau de valeur et les converti
-                for (int i = 0; i < answer.Length-1; i++)
+                for (int i = 0; i < answer.Length - 1; i++)
                 {
-                    values[i] = Convert.ToInt32(answer[i+1]);
+                    values[i] = Convert.ToInt32(answer[i + 1]);
                 }
             }
             catch (Exception e)
@@ -86,9 +86,27 @@ namespace com_box
             return values;
         }
 
-        public void SetRobotSpeed(int speed)
+        public void SetRobotSpeed(int ySpeed, int xSpeed)
         {
-            _robot.Speed = speed;
+            //_robot.Speed = speed;
+            if (ySpeed != 0)
+            {
+                if (xSpeed > 0)
+                {
+                    _robot.lSpeed = ySpeed + xSpeed;
+                    _robot.rSpeed = ySpeed;
+                }
+                else
+                {
+                    _robot.lSpeed = ySpeed;
+                    _robot.rSpeed = ySpeed - xSpeed;
+                }
+            }
+            else
+            {
+                _robot.lSpeed = xSpeed;
+                _robot.rSpeed = -xSpeed;
+            }
         }
 
         public void SendCommand(string command)
