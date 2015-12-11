@@ -72,7 +72,7 @@ namespace com_box
         }
 
         private void tbxCommand_KeyDown(object sender, KeyEventArgs e)
-        {
+        {/*
             switch (e.KeyCode)
             {
                 case Keys.Up: control.SetDirection(Robot.Direction.haut);
@@ -85,13 +85,13 @@ namespace com_box
                     break;
 
             }
-            control.SendCommand(control._robot.GetSendCommand());
+            control.SendCommand(control._robot.GetSendCommand());*/
         }
 
         private void tbxCommand_KeyUp(object sender, KeyEventArgs e)
         {
-            control.SetDirection(Robot.Direction.arret);
-            control.SendCommand(control._robot.GetSendCommand());
+            //control.SetDirection(Robot.Direction.arret);
+            //control.SendCommand(control._robot.GetSendCommand());
         }
 
         private void View_Combox_Load(object sender, EventArgs e)
@@ -120,45 +120,49 @@ namespace com_box
         #region Mouse Control
 
         private Point _mouseLocation;
-        private int ellipse_size = 10;
+        private const int ELLIPSE_SIZE = 10;
 
         private int _mouseX;
         private int _mouseY;
-        
+        private int MaxValue = 20;
                 
+        private readonly Pen _axes = new Pen(Color.Black);
+        private readonly Pen _circle = new Pen(Color.Gray);
         private void pnlCommand_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawLine(new Pen(Color.Black), pnlCommand.Width / 2, 0, pnlCommand.Width / 2, pnlCommand.Height);
-            e.Graphics.DrawLine(new Pen(Color.Black), 0, pnlCommand.Height / 2, pnlCommand.Width, pnlCommand.Height / 2);
-            e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(_mouseLocation.X - ellipse_size / 2, _mouseLocation.Y - ellipse_size / 2, ellipse_size, ellipse_size));
+            
+            e.Graphics.DrawLine(this._axes, this.pnlCommand.Width / 2, 0, this.pnlCommand.Width / 2, this.pnlCommand.Height);
+            e.Graphics.DrawLine(this._axes, 0, this.pnlCommand.Height / 2, this.pnlCommand.Width, this.pnlCommand.Height / 2);
+            e.Graphics.DrawEllipse(this._circle, this.pnlCommand.Bounds);
+            e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(this._mouseLocation.X - ELLIPSE_SIZE / 2, this._mouseLocation.Y - ELLIPSE_SIZE / 2, ELLIPSE_SIZE, ELLIPSE_SIZE));
         }
         
 
         private void pnlCommand_MouseLeave(object sender, EventArgs e)
         {
-            _mouseLocation = new Point(pnlCommand.Width / 2, pnlCommand.Height / 2);
+            this._mouseLocation = new Point(this.pnlCommand.Width / 2, this.pnlCommand.Height / 2);
             Debug.WriteLine("Mouse left");
-            pnlCommand.Invalidate();
+            this.pnlCommand.Invalidate();
         }
 
         private void pnlCommand_MouseMove(object sender, MouseEventArgs e)
         {
             const int maxvalue = 20;
             double offsetX = pnlCommand.Width/2;
-            double offsetY = pnlCommand.Height/2; 
-            _mouseLocation = e.Location;
+            double offsetY = pnlCommand.Height/2;
+            this._mouseLocation = e.Location;
 
-            _mouseX = (int)Math.Round((_mouseLocation.X - offsetX)/offsetX*maxvalue, 0);
-            _mouseY = -(int)Math.Round((_mouseLocation.Y - offsetY) / offsetY * maxvalue, 0);
-            Debug.WriteLine("X: " + _mouseX + ", Y: " + _mouseY);
-            pnlCommand.Invalidate();
+            this._mouseX = (int)Math.Round((this._mouseLocation.X - offsetX)/offsetX*maxvalue, 0);
+            this._mouseY = -(int)Math.Round((this._mouseLocation.Y - offsetY) / offsetY * maxvalue, 0);
+            Debug.WriteLine("X: " + this._mouseX + ", Y: " + this._mouseY);
+            this.pnlCommand.Invalidate();
         }
 
         #endregion
 
         private void tmr_repaint_Tick(object sender, EventArgs e)
         {
-            pnlCommand.Invalidate();
+            this.pnlCommand.Invalidate();
         }
     }
 }
