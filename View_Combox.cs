@@ -137,7 +137,7 @@ namespace com_box
         private void pnlCommand_MouseLeave(object sender, EventArgs e)
         {
             _mouseLocation = new Point(pnlCommand.Width / 2, pnlCommand.Height / 2);
-
+            Debug.WriteLine("Mouse left");
             pnlCommand.Invalidate();
         }
 
