@@ -59,12 +59,12 @@
                 </TransformGroup>
             </ProgressBar.RenderTransform>
         </ProgressBar>
-        <ProgressBar x:Name="Sensor_Front_R2" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="100" Margin="214,85,0,0" RenderTransformOrigin="0.5,0.5" Maximum="1024">
+        <ProgressBar x:Name="Sensor_Front_R2" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="100" Margin="209,93,0,0" RenderTransformOrigin="0.5,0.5" Maximum="1024">
             <ProgressBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="-45"/>
+                    <RotateTransform Angle="-47.788"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </ProgressBar.RenderTransform>

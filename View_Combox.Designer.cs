@@ -32,19 +32,14 @@
             this.cmbCom = new System.Windows.Forms.ComboBox();
             this.btnChangePort = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnAdvance = new System.Windows.Forms.Button();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.tbxCommand = new System.Windows.Forms.TextBox();
             this.gbxSensor = new System.Windows.Forms.GroupBox();
+            this.gbxControls = new System.Windows.Forms.GroupBox();
+            this.pnlCommand = new System.Windows.Forms.Panel();
+            this.tms_sensor = new System.Windows.Forms.Timer(this.components);
+            this.tmr_repaint = new System.Windows.Forms.Timer(this.components);
             this.ehSensor = new System.Windows.Forms.Integration.ElementHost();
             this.sensor1 = new com_box.Sensor();
-            this.gbxControls = new System.Windows.Forms.GroupBox();
-            this.tms_sensor = new System.Windows.Forms.Timer(this.components);
             this.gbxSensor.SuspendLayout();
             this.gbxControls.SuspendLayout();
             this.SuspendLayout();
@@ -76,82 +71,14 @@
             this.btnStop.Text = "Stop all";
             this.btnStop.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(42, 448);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnAdvance
             // 
-            this.btnAdvance.Location = new System.Drawing.Point(595, 10);
+            this.btnAdvance.Location = new System.Drawing.Point(557, 10);
             this.btnAdvance.Name = "btnAdvance";
             this.btnAdvance.Size = new System.Drawing.Size(105, 23);
             this.btnAdvance.TabIndex = 5;
             this.btnAdvance.Text = "Advance prop.";
             this.btnAdvance.UseVisualStyleBackColor = true;
-            // 
-            // btnUp
-            // 
-            this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnUp.Location = new System.Drawing.Point(138, 19);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(39, 39);
-            this.btnUp.TabIndex = 6;
-            this.btnUp.Text = "↑";
-            this.btnUp.UseVisualStyleBackColor = true;
-            // 
-            // btnLeft
-            // 
-            this.btnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnLeft.Location = new System.Drawing.Point(55, 84);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(39, 39);
-            this.btnLeft.TabIndex = 7;
-            this.btnLeft.Text = "←";
-            this.btnLeft.UseVisualStyleBackColor = true;
-            // 
-            // btnDown
-            // 
-            this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnDown.Location = new System.Drawing.Point(138, 156);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(39, 39);
-            this.btnDown.TabIndex = 8;
-            this.btnDown.Text = "↓";
-            this.btnDown.UseVisualStyleBackColor = true;
-            // 
-            // btnRight
-            // 
-            this.btnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnRight.Location = new System.Drawing.Point(210, 84);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(39, 39);
-            this.btnRight.TabIndex = 9;
-            this.btnRight.Text = "→";
-            this.btnRight.UseVisualStyleBackColor = true;
-            // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(200, 226);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
-            this.btnSend.TabIndex = 10;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            // 
-            // tbxCommand
-            // 
-            this.tbxCommand.Location = new System.Drawing.Point(17, 228);
-            this.tbxCommand.Name = "tbxCommand";
-            this.tbxCommand.Size = new System.Drawing.Size(177, 20);
-            this.tbxCommand.TabIndex = 11;
-            this.tbxCommand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxCommand_KeyDown);
-            this.tbxCommand.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxCommand_KeyUp);
             // 
             // gbxSensor
             // 
@@ -163,6 +90,35 @@
             this.gbxSensor.TabStop = false;
             this.gbxSensor.Text = "Sensor";
             // 
+            // gbxControls
+            // 
+            this.gbxControls.Controls.Add(this.pnlCommand);
+            this.gbxControls.Location = new System.Drawing.Point(344, 39);
+            this.gbxControls.Name = "gbxControls";
+            this.gbxControls.Size = new System.Drawing.Size(318, 342);
+            this.gbxControls.TabIndex = 13;
+            this.gbxControls.TabStop = false;
+            this.gbxControls.Text = "Controls";
+            // 
+            // pnlCommand
+            // 
+            this.pnlCommand.Location = new System.Drawing.Point(5, 18);
+            this.pnlCommand.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlCommand.Name = "pnlCommand";
+            this.pnlCommand.Size = new System.Drawing.Size(306, 318);
+            this.pnlCommand.TabIndex = 0;
+            this.pnlCommand.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlCommand_Paint);
+            this.pnlCommand.MouseLeave += new System.EventHandler(this.pnlCommand_MouseLeave);
+            this.pnlCommand.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlCommand_MouseMove);
+            // 
+            // tms_sensor
+            // 
+            this.tms_sensor.Tick += new System.EventHandler(this.tms_sensor_Tick);
+            // 
+            // tmr_repaint
+            // 
+            this.tmr_repaint.Tick += new System.EventHandler(this.tmr_repaint_Tick);
+            // 
             // ehSensor
             // 
             this.ehSensor.Location = new System.Drawing.Point(6, 19);
@@ -172,47 +128,24 @@
             this.ehSensor.Text = "ehSensor";
             this.ehSensor.Child = this.sensor1;
             // 
-            // gbxControls
-            // 
-            this.gbxControls.Controls.Add(this.btnUp);
-            this.gbxControls.Controls.Add(this.btnLeft);
-            this.gbxControls.Controls.Add(this.tbxCommand);
-            this.gbxControls.Controls.Add(this.btnDown);
-            this.gbxControls.Controls.Add(this.btnSend);
-            this.gbxControls.Controls.Add(this.btnRight);
-            this.gbxControls.Location = new System.Drawing.Point(344, 39);
-            this.gbxControls.Name = "gbxControls";
-            this.gbxControls.Size = new System.Drawing.Size(356, 342);
-            this.gbxControls.TabIndex = 13;
-            this.gbxControls.TabStop = false;
-            this.gbxControls.Text = "Controls";
-            // 
-            // tms_sensor
-            // 
-            this.tms_sensor.Tick += new System.EventHandler(this.tms_sensor_Tick);
-            // 
             // View_Combox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 538);
+            this.ClientSize = new System.Drawing.Size(667, 384);
             this.Controls.Add(this.gbxControls);
             this.Controls.Add(this.gbxSensor);
             this.Controls.Add(this.btnAdvance);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnChangePort);
             this.Controls.Add(this.cmbCom);
+            this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.Name = "View_Combox";
             this.Text = "View_Combox";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.View_Combox_FormClosing);
-            this.Load += new System.EventHandler(this.View_Combox_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.View_Combox_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.View_Combox_KeyUp);
             this.gbxSensor.ResumeLayout(false);
             this.gbxControls.ResumeLayout(false);
-            this.gbxControls.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -224,16 +157,11 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Integration.ElementHost ehSensor;
         private Sensor sensor1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnAdvance;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnLeft;
-        private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.TextBox tbxCommand;
         private System.Windows.Forms.GroupBox gbxSensor;
         private System.Windows.Forms.GroupBox gbxControls;
         private System.Windows.Forms.Timer tms_sensor;
+        private System.Windows.Forms.Panel pnlCommand;
+        private System.Windows.Forms.Timer tmr_repaint;
     }
 }
