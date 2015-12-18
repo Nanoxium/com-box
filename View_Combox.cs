@@ -16,11 +16,15 @@ namespace com_box
     {
         Controleur control;
 
+        /// <summary>
+        /// Constructeur de la form
+        /// </summary>
         public View_Combox()
         {
             InitializeComponent();
             control = new Controleur(this);
 
+            //listage des ports COM
             foreach (string item in System.IO.Ports.SerialPort.GetPortNames())
             {
                 cmbCom.Items.Add(item);
@@ -29,12 +33,15 @@ namespace com_box
                     cmbCom.Text = item.ToString();
                 }
             }
-            
+
             //active le double buffer sur le panel de commande
-            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, pnlCommand, new object[] { true }); 
-             
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, pnlCommand, new object[] { true });
+
         }
 
+        /// <summary>
+        /// Mise a jour des senseurs
+        /// </summary>
         public void UpdateSensor()
         {
 
@@ -54,11 +61,21 @@ namespace com_box
             }
         }
 
+        /// <summary>
+        /// Action du timer
+        /// </summary>
+        /// <param name="sender">object</param>
+        /// <param name="e">EventArgs</param>
         private void tms_sensor_Tick(object sender, EventArgs e)
         {
             UpdateSensor();
         }
 
+        /// <summary>
+        /// Bouton de changement de port
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnChangePort_Click(object sender, EventArgs e)
         {
             bool connected = control.ConnectBluetoothPort(this.cmbCom.SelectedItem.ToString());
@@ -71,54 +88,16 @@ namespace com_box
             this.Focus();
         }
 
+        /// <summary>
+        /// Action a la fermeture d ela form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void View_Combox_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //on termine la connection
             control.CloseConnection();
         }
-
-        private void tbxCommand_KeyDown(object sender, KeyEventArgs e)
-        {/*
-            switch (e.KeyCode)
-            {
-                case Keys.Up: control.SetDirection(Robot.Direction.haut);
-                    break;
-                case Keys.Down: control.SetDirection(Robot.Direction.bas);
-                    break;
-                case Keys.Left: control.SetDirection(Robot.Direction.gauche);
-                    break;
-                case Keys.Right: control.SetDirection(Robot.Direction.droite);
-                    break;
-
-            }
-            control.SendCommand(control._robot.GetSendCommand());*/
-        }
-
-        private void tbxCommand_KeyUp(object sender, KeyEventArgs e)
-        {
-            //control.SetDirection(Robot.Direction.arret);
-            //control.SendCommand(control._robot.GetSendCommand());
-        }
-
-        private void View_Combox_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tmr_movement_Tick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void View_Combox_KeyDown(object sender, KeyEventArgs e)
-        {
-            //this.ActiveControl = tbxCommand;
-        }
-
-        private void View_Combox_KeyUp(object sender, KeyEventArgs e)
-        {
-            //this.ActiveControl = tbxCommand;
-        }
-
 
 
 
@@ -130,18 +109,18 @@ namespace com_box
         private int _mouseX;
         private int _mouseY;
         private int MaxValue = 20;
-                
+
         private readonly Pen _axes = new Pen(Color.Black);
         private readonly Pen _circle = new Pen(Color.Gray);
         private void pnlCommand_Paint(object sender, PaintEventArgs e)
         {
-            
+
             e.Graphics.DrawLine(this._axes, this.pnlCommand.Width / 2, 0, this.pnlCommand.Width / 2, this.pnlCommand.Height);
             e.Graphics.DrawLine(this._axes, 0, this.pnlCommand.Height / 2, this.pnlCommand.Width, this.pnlCommand.Height / 2);
-            e.Graphics.DrawEllipse(this._circle, 0, 0, this.pnlCommand.Width-1, this.pnlCommand.Height-1);
+            e.Graphics.DrawEllipse(this._circle, 0, 0, this.pnlCommand.Width - 1, this.pnlCommand.Height - 1);
             e.Graphics.FillEllipse(new SolidBrush(Color.Red), new Rectangle(this._mouseLocation.X - ELLIPSE_SIZE / 2, this._mouseLocation.Y - ELLIPSE_SIZE / 2, ELLIPSE_SIZE, ELLIPSE_SIZE));
         }
-        
+
 
         private void pnlCommand_MouseLeave(object sender, EventArgs e)
         {
@@ -155,11 +134,11 @@ namespace com_box
         private void pnlCommand_MouseMove(object sender, MouseEventArgs e)
         {
             const int maxvalue = 20;
-            double offsetX = pnlCommand.Width/2;
-            double offsetY = pnlCommand.Height/2;
+            double offsetX = pnlCommand.Width / 2;
+            double offsetY = pnlCommand.Height / 2;
             this._mouseLocation = e.Location;
-            
-            this._mouseX = (int)Math.Round((this._mouseLocation.X - offsetX)/offsetX*maxvalue, 0);
+
+            this._mouseX = (int)Math.Round((this._mouseLocation.X - offsetX) / offsetX * maxvalue, 0);
             this._mouseY = -(int)Math.Round((this._mouseLocation.Y - offsetY) / offsetY * maxvalue, 0);
             Debug.WriteLine("X: " + this._mouseX + ", Y: " + this._mouseY);
             this.pnlCommand.Invalidate();
@@ -172,8 +151,14 @@ namespace com_box
 
         #endregion
 
+        /// <summary>
+        /// Action du timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tmr_repaint_Tick(object sender, EventArgs e)
         {
+            //on "repeind" le panel
             this.pnlCommand.Invalidate();
         }
     }

@@ -8,6 +8,7 @@ namespace com_box
 {
     class Robot
     {
+        
         public enum Direction
         {
             haut,
@@ -16,7 +17,7 @@ namespace com_box
             droite,
             arret
         }
-
+        
         public int rSpeed { get; set; }
         public int lSpeed { get; set; }
 
@@ -36,25 +37,12 @@ namespace com_box
 
 
 
-
+        /// <summary>
+        /// Retourne la commande a envoyer
+        /// </summary>
+        /// <returns></returns>
         public string GetSendCommand()
         {
-            /*
-            switch(Dir)
-            {                    
-                case Direction.arret: return "D,0,0";
-
-                case Direction.haut: return "D," + Speed + "," + Speed + "";
-
-                case Direction.bas: return "D," + -Speed + "," + -Speed + "";
-
-                case Direction.gauche: return "D," + -Speed + "," + Speed + "";
-
-                case Direction.droite: return "D," + Speed + "," + -Speed;
-
-                default: return "D,0,0";
-            }
-             */
             return "D," + lSpeed + "," + rSpeed + "";;
         }
     }

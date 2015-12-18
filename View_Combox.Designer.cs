@@ -144,9 +144,6 @@
             this.Name = "View_Combox";
             this.Text = "View_Combox";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.View_Combox_FormClosing);
-            this.Load += new System.EventHandler(this.View_Combox_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.View_Combox_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.View_Combox_KeyUp);
             this.gbxSensor.ResumeLayout(false);
             this.gbxControls.ResumeLayout(false);
             this.ResumeLayout(false);
